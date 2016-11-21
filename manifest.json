@@ -1,0 +1,23 @@
+{
+  "manifest_version": 2,
+  "name": "External Video",
+  "version": "1.0",
+  "description": "Opens video link in video player",
+
+  "applications": {
+    "gecko": {
+      "id": "external-video@yan.pm",
+      "strict_min_version": "50.0"
+    }
+  },
+
+  "icons": {
+    "48": "icons/border-48.png"
+  },
+
+  "background": {
+    "scripts": ["external-video.js"]
+  },
+
+  "permissions": ["nativeMessaging"]
+}
