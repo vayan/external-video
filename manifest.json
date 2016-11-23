@@ -19,5 +19,5 @@
     "scripts": ["external-video.js"]
   },
 
-  "permissions": ["nativeMessaging"]
+  "permissions": ["nativeMessaging", "webRequestBlocking", "webRequest"]
 }
