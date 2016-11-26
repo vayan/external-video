@@ -1,7 +1,7 @@
 {
   "name": "mpv",
   "description": "MPV Manifest file for external video addon",
-  "path": "/home/vayan/Projects/external-video/app/mpv.py",
+  "path": "/opt/external-video/mpv.py",
   "type": "stdio",
   "allowed_extensions": [ "external-video@yan.pm" ]
 }
