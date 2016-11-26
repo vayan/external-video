@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 
-# and add mpv.json to ~/.mozilla/native-messaging-hosts
 import sys
 import json
 import struct
 import subprocess
+import shlex
 
 
 # Read a message from stdin and decode it.
@@ -12,9 +12,9 @@ def getMessage():
     rawLength = sys.stdin.read(4)
     if len(rawLength) == 0:
         sys.exit(0)
-        messageLength = struct.unpack('@I', rawLength)[0]
-        message = sys.stdin.read(messageLength)
-        return json.loads(message)
+    messageLength = struct.unpack('@I', rawLength)[0]
+    message = sys.stdin.read(messageLength)
+    return json.loads(message)
 
 
 # Encode a message for transmission,
@@ -35,4 +35,6 @@ def sendMessage(encodedMessage):
 while True:
     mpv_args = getMessage()
     if (len(mpv_args) > 1):
-        subprocess.call(["mpv", mpv_args])
+        args = shlex.split("mpv " + mpv_args)
+        subprocess.call(args)
+        sys.exit(0)
