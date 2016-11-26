@@ -8,7 +8,7 @@ function closeTab(data) {
 
 function openInMpv(requestDetails) {
   if (requestDetails.type === "main_frame") {
-    browser.runtime.sendNativeMessage("mpv", requestDetails.url + " --force-window=immediate ");
+    browser.runtime.sendNativeMessage("mpv", requestDetails.url + " --force-window=immediate --pause");
 
     querying = browser.tabs.get(requestDetails.tabId)
     querying.then(closeTab);
