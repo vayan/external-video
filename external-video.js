@@ -1,20 +1,35 @@
 var targetPages = ["https://www.youtube.com/watch*"];
+var settings = {};
 
-function closeTab(data) {
-  if (!data.active) {
-    browser.tabs.remove(data.id)
+function restoreSettings() {
+  function setSettings(data) {
+    settings = data;
   }
+
+  var getting = browser.storage.local.get();
+  getting.then(setSettings);
 }
 
 function openInMpv(requestDetails) {
-  if (requestDetails.type === "main_frame") {
-    browser.runtime.sendNativeMessage("mpv", requestDetails.url + " --force-window=immediate --pause");
+  function closeTab(data) {
+    if (!data.active) {
+      browser.tabs.remove(data.id);
+    }
+  }
 
-    querying = browser.tabs.get(requestDetails.tabId)
+  if (requestDetails.type === "main_frame") {
+    var command = `${requestDetails.url} --force-window=immediate ${settings.args}`;
+
+    browser.runtime.sendNativeMessage("mpv", command);
+
+    var querying = browser.tabs.get(requestDetails.tabId);
     querying.then(closeTab);
 
     return { cancel: true };
   }
 }
 
+browser.storage.onChanged.addListener(restoreSettings);
 browser.webRequest.onBeforeRequest.addListener(openInMpv, { urls: targetPages }, ["blocking"]);
+
+restoreSettings();

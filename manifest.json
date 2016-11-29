@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "External Video",
-  "version": "1.0",
+  "version": "1.1",
   "description": "Opens video link in MPV",
   "homepage_url": "https://github.com/vayan/external-video",
 
@@ -20,5 +20,9 @@
     "scripts": ["external-video.js"]
   },
 
-  "permissions": ["nativeMessaging", "webRequestBlocking", "webRequest"]
+  "options_ui": {
+    "page": "settings/options.html"
+  },
+
+  "permissions": ["nativeMessaging", "webRequestBlocking", "webRequest", "storage"]
 }
