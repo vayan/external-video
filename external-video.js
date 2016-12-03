@@ -1,4 +1,13 @@
-var targetPages = ["https://www.youtube.com/watch*"];
+var targetPages = [
+  "*://*.youtube.com/watch*",
+  "*://*.vimeo.com/*",
+  "*://*.streamable.com/*",
+  "*://*.liveleak.com/view*",
+  "*://*.vid.me/*",
+  "*://*.funnyordie.com/videos/*",
+  "*://*.dailymotion.com/video/*"
+];
+
 var settings = {};
 
 function openOriginal(info, tab) {
