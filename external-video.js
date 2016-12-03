@@ -1,6 +1,12 @@
 var targetPages = ["https://www.youtube.com/watch*"];
 var settings = {};
 
+function openOriginal(info, tab) {
+  browser.tabs.create({
+    url: info.linkUrl
+  });
+}
+
 function restoreSettings() {
   function setSettings(data) {
     settings = data;
@@ -17,7 +23,7 @@ function openInMpv(requestDetails) {
     }
   }
 
-  if (requestDetails.type === "main_frame") {
+  if (requestDetails.type === "main_frame" && requestDetails.originUrl != undefined) {
     var command = `${requestDetails.url} --force-window=immediate ${settings.args}`;
 
     browser.runtime.sendNativeMessage("mpv", command);
@@ -28,6 +34,13 @@ function openInMpv(requestDetails) {
     return { cancel: true };
   }
 }
+
+chrome.contextMenus.create({
+  id: "open_original",
+  title: "Open without MPV",
+  onclick: openOriginal,
+  contexts: ["link"]
+});
 
 browser.storage.onChanged.addListener(restoreSettings);
 browser.webRequest.onBeforeRequest.addListener(openInMpv, { urls: targetPages }, ["blocking"]);
