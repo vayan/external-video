@@ -5,6 +5,8 @@
 * mpv < [https://mpv.io](https://mpv.io/) >
 * youtube-dl < [https://rg3.github.io/youtube-dl/](https://rg3.github.io/youtube-dl/)>
 
+and Python probably 
+
 ## Setup
 
 You need to copy `mpv.json` and `mpv.py` so the addon can use the [Native Messaging API](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Native_messaging)
@@ -23,7 +25,7 @@ I made a small bash script to make things easier :
 
 ## Todo
 
-see https://github.com/vayan/external-video/projects/1
+see https://github.com/vayan/external-video/issues
 
 ## Downloads
 
