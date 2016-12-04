@@ -1,11 +1,13 @@
 # external-video
 
+![crappy demo gif](https://github.com/vayan/external-video/raw/master/demo.gif)
+
 ## Requirements
 
 * mpv < [https://mpv.io](https://mpv.io/) >
 * youtube-dl < [https://rg3.github.io/youtube-dl/](https://rg3.github.io/youtube-dl/)>
 
-and Python probably 
+and Python probably
 
 ## Setup
 
