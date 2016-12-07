@@ -9,11 +9,18 @@ var targetPages = [
 ];
 
 var settings = {};
+var tabsLock = [];
 
 function openOriginal(info, tab) {
-  browser.tabs.create({
-    url: info.linkUrl
-  });
+  function onCreated(tab) {
+    tabsLock.push(tab.id);
+    browser.tabs.update(tab.id, {
+      url: info.linkUrl
+    });
+  }
+
+  var creating = browser.tabs.create({});
+  creating.then(onCreated);
 }
 
 function restoreSettings() {
@@ -25,22 +32,26 @@ function restoreSettings() {
   getting.then(setSettings);
 }
 
-function openInMpv(requestDetails) {
+function openInMpv(request) {
+  var lockedTabIndex = tabsLock.lastIndexOf(request.tabId);
+
   function closeTab(data) {
     if (!data.active) {
       browser.tabs.remove(data.id);
     }
   }
 
-  if (requestDetails.type === "main_frame" && requestDetails.originUrl != undefined) {
-    var command = `${requestDetails.url} --force-window=immediate ${settings.args}`;
+  if (request.type === "main_frame" && lockedTabIndex === -1) {
+    var command = `${request.url} --force-window=immediate ${settings.args}`;
 
     browser.runtime.sendNativeMessage("mpv", command);
 
-    var querying = browser.tabs.get(requestDetails.tabId);
+    var querying = browser.tabs.get(request.tabId);
     querying.then(closeTab);
 
     return { cancel: true };
+  } else if (lockedTabIndex != -1) {
+    tabsLock.splice(lockedTabIndex, 1);
   }
 }
 
