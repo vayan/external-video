@@ -49,6 +49,10 @@ function openInMpv(request) {
     var querying = browser.tabs.get(request.tabId);
     querying.then(closeTab);
 
+    browser.history.addUrl({
+      url: request.url
+    });
+
     return { cancel: true };
   } else if (lockedTabIndex != -1) {
     tabsLock.splice(lockedTabIndex, 1);

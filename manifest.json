@@ -24,5 +24,12 @@
     "page": "settings/options.html"
   },
 
-  "permissions": ["nativeMessaging", "webRequestBlocking", "webRequest", "storage", "contextMenus"]
+  "permissions": [
+    "nativeMessaging",
+    "webRequestBlocking",
+    "webRequest",
+    "storage",
+    "contextMenus",
+    "history"
+  ]
 }
