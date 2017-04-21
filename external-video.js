@@ -54,8 +54,6 @@ function openInMpv(request) {
     });
 
     return { cancel: true };
-  } else if (lockedTabIndex != -1) {
-    tabsLock.splice(lockedTabIndex, 1);
   }
 }
 
