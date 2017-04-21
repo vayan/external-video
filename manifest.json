@@ -30,6 +30,13 @@
     "webRequest",
     "storage",
     "contextMenus",
-    "history"
+    "history",
+    "*://*.youtube.com/watch*",
+    "*://*.vimeo.com/*",
+    "*://*.streamable.com/*",
+    "*://*.liveleak.com/view*",
+    "*://*.vid.me/*",
+    "*://*.funnyordie.com/videos/*",
+    "*://*.dailymotion.com/video/*"
   ]
 }
