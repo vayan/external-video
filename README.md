@@ -17,13 +17,17 @@ You need to copy `mpv.json` and `mpv.py` so the addon can use the [Native Messag
 
 `mpv.py` is a dumb script that just launch `mpv` with some args
 
-I made a small bash script to make things easier :
+### Linux
 
-`git clone https://github.com/vayan/external-video`
+Copy `mpv.json` to `~/.mozilla/native-messaging-hosts/`
+Copy `mpv.py` to `/opt/external-video`
 
-`cd external-video/app`
+### MacOSX
 
-`./install.sh`
+Copy `mpv.json` to `~/Library/Application Support/Mozilla/NativeMessagingHosts/`
+Copy `mpv.py` to `/opt/external-video`
+
+
 
 ## Todo
 

@@ -33,6 +33,14 @@ function restoreSettings() {
   getting.then(setSettings);
 }
 
+function onResponse(response) {
+  console.log(`Received ${response}`);
+}
+
+function onError(error) {
+  console.log(`Error: ${error}`);
+}
+
 function openInMpv(request) {
   var lockedTabIndex = tabsLock.lastIndexOf(request.tabId);
 
@@ -45,7 +53,9 @@ function openInMpv(request) {
   if (request.type === "main_frame" && lockedTabIndex === -1) {
     var command = `${request.url} --force-window=immediate ${settings.args}`;
 
-    browser.runtime.sendNativeMessage("mpv", command);
+    var sending = browser.runtime.sendNativeMessage("mpv", command);
+
+    sending.then(onResponse, onError);
 
     var querying = browser.tabs.get(request.tabId);
     querying.then(closeTab);
