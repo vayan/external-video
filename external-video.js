@@ -1,5 +1,6 @@
 var targetPages = [
   "*://*.youtube.com/watch*",
+  "*://*.twitch.tv/*",
   "*://*.vimeo.com/*",
   "*://*.streamable.com/*",
   "*://*.liveleak.com/view*",
